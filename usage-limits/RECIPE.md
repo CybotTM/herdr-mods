@@ -4,6 +4,8 @@ Every Claude Code and Codex usage window (the 5-hour session, weekly, and per-mo
 in a status bar, with a hover panel of details and the current session's context. The numbers come
 from the CLIs themselves; the mod never reads a token or credential file.
 
+![Usage limits](preview.png)
+
 ## What you see
 
 - **Bar** (a status-bar block on `chrome` with a 1px top `border`, 11.8px `muted` text, aligned

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Live ports preview</title>
+<link rel="stylesheet" href="herdr.css">
+<style>
+  body { width: 960px; height: 600px; position: relative; overflow: hidden; background: radial-gradient(900px 500px at 40% 30%, #20232a, #121418); }
+  .term { position: absolute; left: 24px; top: 24px; right: 24px; bottom: 52px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); padding: 18px 20px; font: 13px/1.6 var(--mono); color: var(--muted); }
+  .status { position: absolute; left: 0; right: 0; bottom: 0; height: 28px; display: flex; align-items: center; gap: 14px; padding: 0 12px; background: var(--chrome); border-top: 1px solid var(--border); font-size: 11.8px; color: var(--muted); }
+  .pop { position: absolute; right: 92px; bottom: 34px; width: 380px; overflow: hidden; }
+  .group { height: 34px; padding: 0 14px; display: flex; align-items: center; gap: 8px; background: var(--raised); border-bottom: 1px solid var(--border); }
+  .port { height: 54px; padding: 9px 14px 0; display: flex; align-items: flex-start; gap: 14px; border-bottom: 1px solid var(--border); }
+  .port .num { width: 56px; font: 700 13px var(--mono); }
+  .act { width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; border-radius: 5px; color: var(--muted); }
+</style></head>
+<body><script src="icons.js"></script>
+<div class="term">
+  <div><span class="green">➜</span> storefront <span class="blue">git:(feat/saved-carts)</span> bun run dev</div>
+  <div>$ next dev --turbo</div>
+  <div>&nbsp; ▲ Next.js 15.2</div>
+  <div>&nbsp; - Local: &nbsp; &nbsp; &nbsp; <span style="color: var(--fg)">http://localhost:3000</span></div>
+  <div>&nbsp; ✓ Ready in 1.4s</div>
+</div>
+<div class="pop panel">
+  <div class="row" style="height: 40px; padding: 0 14px; gap: 8px; border-bottom: 1px solid var(--border)">
+    <svg class="i muted"><use href="#plug"/></svg><b style="font-weight: 500">Ports</b><span class="grow"></span><span class="muted" style="font-size: 12px">3 workspace · 4 external</span>
+  </div>
+  <div class="group"><span class="grow">Saved carts for signed-in shoppers</span><svg class="i muted"><use href="#folder"/></svg><span class="muted" style="font-size: 12px">2</span></div>
+  <div class="port"><span class="num">3000</span><div class="col grow" style="gap: 2px"><span class="muted">node</span><span class="dim" style="font-size: 12px">localhost:3000</span></div><span class="act"><svg class="i"><use href="#external"/></svg></span><span class="act"><svg class="i"><use href="#stop"/></svg></span></div>
+  <div class="port"><span class="num">5432</span><div class="col grow" style="gap: 2px"><span class="muted">postgres</span><span class="dim" style="font-size: 12px">localhost:5432</span></div><span class="act"><svg class="i"><use href="#external"/></svg></span><span class="act"><svg class="i"><use href="#stop"/></svg></span></div>
+  <div class="group"><span class="grow">api</span><svg class="i muted"><use href="#folder"/></svg><span class="muted" style="font-size: 12px">1</span></div>
+  <div class="port"><span class="num">8080</span><div class="col grow" style="gap: 2px"><span class="muted">go-api</span><span class="dim" style="font-size: 12px">localhost:8080</span></div><span class="act"><svg class="i"><use href="#external"/></svg></span><span class="act"><svg class="i"><use href="#stop"/></svg></span></div>
+  <div class="group muted" style="border-bottom: 0"><span class="grow">▸ Other processes</span><span style="font-size: 12px">4</span></div>
+</div>
+<div class="status">
+  <span class="dim">Used</span><span>5h 38%</span><span class="dim">·</span><span>wk 54%</span>
+  <span class="grow"></span>
+  <span class="dim">⌘⇧P commands</span>
+  <span class="row" style="height: 20px; padding: 0 7px; gap: 5px; border-radius: 5px; background: var(--hover); color: var(--fg)"><svg class="i" style="width: 13px; height: 13px"><use href="#plug"/></svg>3</span>
+  <span>This computer</span>
+</div>
+</body></html>

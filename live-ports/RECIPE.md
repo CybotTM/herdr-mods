@@ -4,6 +4,8 @@ The TCP ports listening on this computer, grouped by the Herdr space whose git c
 them: a small plug-and-count button for a status bar, and a popup above it listing each port with
 Open and Stop. Other mods (such as a sidebar) can read the same list from shared state.
 
+![Live ports](preview.png)
+
 ## What you see
 
 - **Button**: right-aligned in its block on `chrome` with a 1px top `border`: a plug icon and the

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Issues preview</title>
+<link rel="stylesheet" href="herdr.css">
+<style>
+  body { width: 1600px; height: 880px; position: relative; overflow: hidden; background: radial-gradient(1200px 700px at 30% 20%, #20232a, #121418); }
+  .viewer { position: absolute; left: 36px; top: 36px; width: 1040px; height: 808px; display: flex; flex-direction: column; background: var(--bg); }
+  .card { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .card > header { height: 38px; padding: 0 12px; display: flex; align-items: center; gap: 8px; background: var(--raised); border-bottom: 1px solid var(--border); }
+  .side h4 { margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--muted); display: flex; }
+  .side section { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .dialog { position: absolute; right: 36px; top: 120px; width: 500px; padding: 18px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .item { height: 42px; padding: 0 10px; display: flex; align-items: center; gap: 10px; border-radius: 7px; }
+  .item.sel { background: var(--selected); }
+  code { font-family: var(--mono); font-size: 12px; background: var(--raised); padding: 1px 5px; border-radius: 4px; }
+</style></head>
+<body><script src="icons.js"></script>
+
+<div class="viewer panel">
+  <div class="col" style="padding: 14px 32px 0; gap: 14px; border-bottom: 1px solid var(--border)">
+    <div class="row" style="gap: 8px; height: 32px">
+      <span class="muted">acme/storefront · pull request</span><span class="grow"></span>
+      <span class="btn"><svg class="i"><use href="#refresh"/></svg>Refresh</span>
+      <span class="btn"><svg class="i"><use href="#copy"/></svg>Copy</span>
+      <span class="btn"><svg class="i"><use href="#external"/></svg>Open on GitHub</span>
+      <span class="btn" style="width: 32px; padding: 0"><svg class="i"><use href="#x"/></svg></span>
+    </div>
+    <div class="row" style="gap: 16px; align-items: flex-start">
+      <div class="grow" style="font-size: 28px">Add saved carts for signed-in shoppers <span class="dim">#212</span></div>
+      <span class="btn" style="margin-top: 4px"><svg class="i"><use href="#arrow"/></svg>Start workspace</span>
+    </div>
+    <div class="row" style="gap: 8px">
+      <span class="row" style="height: 30px; padding: 0 12px; gap: 6px; border-radius: 15px; background: #238636; color: #fff; font-weight: 600"><svg class="i"><use href="#pull"/></svg>Open</span>
+      <b>mira-k</b>
+      <code>main</code><span class="dim">←</span><code>feat/saved-carts</code>
+      <span class="dim">· updated 2h ago</span>
+    </div>
+    <div class="row" style="gap: 24px">
+      <span class="row" style="height: 42px; gap: 8px; border-bottom: 2px solid var(--fg)"><svg class="i"><use href="#chat"/></svg>Conversation</span>
+      <span class="row muted" style="height: 42px; gap: 8px"><svg class="i"><use href="#checks"/></svg>Checks <span class="badge">4</span></span>
+      <span class="row muted" style="height: 42px; gap: 8px"><svg class="i"><use href="#file"/></svg>Files changed <span class="badge">18</span></span>
+    </div>
+  </div>
+  <div class="row grow" style="align-items: stretch; min-height: 0">
+    <div class="col grow" style="padding: 20px 24px 20px 32px; gap: 0">
+      <div class="card">
+        <header><span class="avatar" style="background: #6ea8fe33; color: var(--blue)">M</span><b>mira-k</b><span class="muted">opened 2h ago</span></header>
+        <div style="padding: 14px 16px; font-size: 14px; line-height: 1.55">
+          <div style="font-size: 17px; font-weight: 600; margin-bottom: 6px">Summary</div>
+          Signed-in shoppers keep their cart across devices. Carts sync on sign-in and merge with the
+          guest cart. Closes <span class="blue">#198</span>.
+          <ul style="margin: 8px 0 0; padding-left: 20px">
+            <li><code>carts</code> table and <code>CartService.merge()</code></li>
+            <li>Sync on sign-in, debounce writes to 2s</li>
+            <li>Tests for merge conflicts and expired items</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-left: 19px; width: 2px; height: 16px; background: var(--border)"></div>
+      <div class="row muted" style="gap: 10px; padding-left: 6px">
+        <span class="row" style="width: 28px; height: 28px; justify-content: center; border-radius: 14px; background: var(--raised); border: 1px solid var(--border)"><svg class="i"><use href="#git-branch"/></svg></span>
+        <span class="avatar" style="width: 16px; height: 16px; background: #a371f733; color: var(--purple); font-size: 8px">D</span><b style="color: var(--fg)">dev-ops</b> added a commit that references this · <u>1h ago</u>
+      </div>
+      <div style="margin-left: 19px; width: 2px; height: 16px; background: var(--border)"></div>
+      <div class="card">
+        <header><span class="avatar" style="background: #3fb95033; color: var(--green)">J</span><b>jonas</b><span class="muted">1h ago</span><span class="grow"></span><span class="badge">Member</span></header>
+        <div style="padding: 14px 16px; font-size: 14px">Looks good. Can we keep the guest cart for 30 days after merging?</div>
+      </div>
+    </div>
+    <div class="col side" style="width: 264px; padding: 6px 24px 0 8px">
+      <div class="panel" style="box-shadow: none; padding: 12px; margin: 10px 0; display: flex; flex-direction: column; gap: 10px">
+        <div class="row" style="gap: 8px"><svg class="i muted"><use href="#pull"/></svg><b class="grow" style="font-size: 14px">Pull request</b><span class="tag green" style="border-color: var(--green); border-radius: 11px">Open</span></div>
+        <div class="row" style="gap: 4px"><span class="btn green grow"><svg class="i"><use href="#merge"/></svg>Squash and merge</span><span class="btn green" style="width: 32px; padding: 0"><svg class="i"><use href="#chev-down"/></svg></span></div>
+        <span class="btn"><svg class="i red"><use href="#x"/></svg>Close pull request</span>
+      </div>
+      <section><h4>Assignees<span class="grow"></span><span class="blue" style="font-weight: 400">Edit</span></h4><div class="row" style="gap: 8px"><span class="avatar" style="background: #6ea8fe33; color: var(--blue)">M</span><b>mira-k</b></div></section>
+      <section><h4>Reviewers<span class="grow"></span><span class="blue" style="font-weight: 400">Edit</span></h4>
+        <div class="row" style="gap: 8px; margin-bottom: 8px"><span class="avatar" style="background: #3fb95033; color: var(--green)">J</span><b class="grow">jonas</b><span class="green" style="font-size: 12px">Approved</span></div>
+        <div class="row" style="gap: 8px"><span class="avatar" style="background: #d2992233; color: var(--amber)">P</span><b class="grow">priya</b><span class="amber" style="font-size: 12px">Pending</span></div></section>
+      <section><h4>Checks<span class="grow"></span><span class="blue" style="font-weight: 400">View</span></h4><span class="muted" style="font-size: 12px">3 passed, 1 pending</span></section>
+      <section><h4>Linked issues</h4><div class="row" style="gap: 8px"><svg class="i green"><use href="#issue"/></svg><b>#198</b></div></section>
+    </div>
+  </div>
+</div>
+
+<div class="dialog panel">
+  <div class="row"><b class="grow" style="font-size: 15px">Create worktree</b><span class="ibtn"><svg class="i"><use href="#x"/></svg></span></div>
+  <div class="col" style="gap: 6px"><span class="label">Project</span><div class="field"><svg class="i muted"><use href="#folder"/></svg><span class="grow">storefront</span><svg class="i dim"><use href="#chev-down"/></svg></div></div>
+  <div class="row" style="gap: 4px">
+    <span class="pill"><svg class="i"><use href="#git-branch"/></svg>Branch</span>
+    <span class="pill on"><svg class="i"><use href="#issue"/></svg>Issue</span>
+    <span class="pill"><svg class="i"><use href="#pull"/></svg>PR</span>
+    <span class="pill"><svg class="i"><use href="#plus"/></svg>New</span>
+    <span class="grow"></span><span class="ibtn"><svg class="i"><use href="#refresh"/></svg></span>
+  </div>
+  <div class="field focus" style="height: 36px"><svg class="i dim"><use href="#search"/></svg><span>#198</span></div>
+  <div class="item sel"><svg class="i green"><use href="#issue"/></svg><div class="col grow"><span class="trunc">Saved carts for signed-in shoppers</span><span class="dim" style="font-size: 11.5px">#198 · PR #212 works on it</span></div><span class="tag green">Issue</span></div>
+  <div class="col" style="gap: 10px; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg)">
+    <span class="dim" style="font-size: 11px; font-weight: 500">Details</span>
+    <div class="col" style="gap: 6px"><span class="label">Branch</span><div class="field"><span class="mono" style="font-size: 12.5px">feat/saved-carts</span></div>
+      <span class="dim" style="font-size: 11.5px">From PR #212 · Only on origin · makes a local branch tracking origin/feat/saved-carts</span></div>
+    <div class="col" style="gap: 6px"><span class="label">Space name</span><div class="field">Saved carts for signed-in shoppers</div></div>
+    <div class="col" style="gap: 6px"><span class="label">Agent <span class="dim" style="font-weight: 400">[Optional]</span></span><div class="field"><svg class="i" style="fill: var(--clay); stroke: none"><use href="#spark"/></svg><span class="grow">Claude Code</span><svg class="i dim"><use href="#chev-down"/></svg></div></div>
+  </div>
+  <div class="row" style="gap: 10px"><span class="grow dim" style="font-size: 11px">↑↓ choose · ↵ create · esc close</span><span class="btn solid" style="height: 34px; padding: 0 14px">Create worktree <span style="font-size: 11px; opacity: .7">⌘↵</span></span></div>
+</div>
+</body></html>

@@ -5,6 +5,8 @@ A run button for Herdr's tab bar, after T3 Code's, adapted from `t3-actions` in
 a new terminal with one click, and the ▾ menu lists every saved action plus **Add action**. Actions
 are kept in shared state, so every layout and window sees the same list.
 
+![Actions](preview.png)
+
 ## What you see
 
 - **In a bar** (sized to its block, 24px tall, outlined with a 1px `border`, radius 6, 12px text

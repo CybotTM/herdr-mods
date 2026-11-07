@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Usage limits preview</title>
+<link rel="stylesheet" href="herdr.css">
+<style>
+  body { width: 960px; height: 600px; position: relative; overflow: hidden; background: radial-gradient(900px 500px at 40% 30%, #20232a, #121418); }
+  .term { position: absolute; left: 24px; top: 24px; right: 24px; bottom: 52px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); }
+  .status { position: absolute; left: 0; right: 0; bottom: 0; height: 28px; display: flex; align-items: center; gap: 18px; padding: 0 12px; background: var(--chrome); border-top: 1px solid var(--border); font-size: 11.8px; color: var(--muted); }
+  .seg { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .card { position: absolute; left: 12px; bottom: 34px; width: 340px; padding: 14px; display: flex; flex-direction: column; gap: 14px; font-size: 12.5px; }
+  .lim { display: flex; align-items: center; gap: 8px; }
+  .lim .name { flex: 1; color: var(--muted); }
+  .lim .bar { width: 110px; position: relative; }
+  .lim .pct { width: 36px; text-align: right; }
+  .lim .left { width: 48px; text-align: right; font-size: 11px; color: var(--dim); }
+  .logo { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .plan { padding: 0 5px; border-radius: 4px; background: var(--raised); font-size: 10px; color: var(--accent); }
+</style></head>
+<body><script src="icons.js"></script>
+<div class="term" style="padding: 18px 20px; font: 13px/1.6 var(--mono); color: var(--muted)"><div style="color: var(--clay)">✻ Claude Code</div><div>&gt; add a migration for the carts table</div><div style="color: var(--fg)">● I&#39;ll add <span class="blue">db/migrations/0042_carts.sql</span> and a down migration.</div><div>&nbsp; ⎿ Wrote 28 lines</div></div>
+<div class="card panel">
+  <div class="col" style="gap: 8px">
+    <div class="row" style="gap: 6px"><span class="logo" style="background: var(--clay)"><svg class="i" style="width: 10px; height: 10px; fill: #fff; stroke: none"><use href="#spark"/></svg></span><b>Claude</b><span class="plan">Max</span><span class="grow"></span><span class="dim" style="font-size: 11px">updated 2m ago</span></div>
+    <div class="lim"><span class="name">5-hour</span><span class="bar"><i style="width: 38%; background: var(--green)"></i></span><span class="pct">38%</span><span class="left">2h 41m</span></div>
+    <div class="lim"><span class="name">Weekly</span><span class="bar"><i style="width: 54%; background: var(--green)"></i></span><span class="pct">54%</span><span class="left">3d 6h</span></div>
+    <div class="lim"><span class="name">Weekly · Opus</span><span class="bar"><i style="width: 76%; background: var(--amber)"></i></span><span class="pct amber">76%</span><span class="left">3d 6h</span></div>
+  </div>
+  <div class="col" style="gap: 8px">
+    <div class="row" style="gap: 6px"><span class="logo" style="background: #e6e8eb"><svg class="i" style="width: 10px; height: 10px; color: #111"><use href="#terminal"/></svg></span><b>Codex</b><span class="plan">Plus</span><span class="grow"></span><span class="dim" style="font-size: 11px">updated 2m ago</span></div>
+    <div class="lim"><span class="name">5-hour</span><span class="bar"><i style="width: 12%; background: var(--green)"></i></span><span class="pct">12%</span><span class="left">4h 10m</span></div>
+    <div class="lim"><span class="name">Weekly</span><span class="bar"><i style="width: 31%; background: var(--green)"></i></span><span class="pct">31%</span><span class="left">5d 2h</span></div>
+  </div>
+  <div class="col" style="gap: 4px; padding-top: 10px; border-top: 1px solid var(--border)">
+    <div class="row" style="gap: 6px"><b>This session</b><span class="grow dim trunc">storefront · Claude Code</span><span class="bar" style="width: 60px"><i style="width: 44%; background: var(--green)"></i></span><span>ctx 44%</span></div>
+    <span class="dim" style="font-size: 11px">88k of 200k tokens · 23 calls · 1 compaction</span>
+  </div>
+  <div class="row dim" style="font-size: 10.5px; gap: 6px"><span class="grow">Data: claude and codex CLIs, numbers from session logs.</span><svg class="i"><use href="#gear"/></svg></div>
+</div>
+<div class="status">
+  <span class="dim">Used</span>
+  <span class="seg"><span class="logo" style="background: var(--clay)"><svg class="i" style="width: 10px; height: 10px; fill: #fff; stroke: none"><use href="#spark"/></svg></span><span class="bar" style="width: 44px"><i style="width: 38%; background: var(--muted)"></i></span><span style="color: var(--fg)">5h 38%</span><span class="dim">·</span><span style="color: var(--fg)">wk 54%</span><span class="dim">·</span><span class="amber">Opus 76%</span></span>
+  <span class="seg"><span class="logo" style="background: #e6e8eb"><svg class="i" style="width: 10px; height: 10px; color: #111"><use href="#terminal"/></svg></span><span class="bar" style="width: 44px"><i style="width: 12%; background: var(--muted)"></i></span><span style="color: var(--fg)">5h 12%</span><span class="dim">·</span><span style="color: var(--fg)">wk 31%</span></span>
+  <svg class="i dim" style="width: 13px; height: 13px"><use href="#refresh"/></svg>
+  <span class="grow"></span><span>This computer</span>
+</div>
+</body></html>

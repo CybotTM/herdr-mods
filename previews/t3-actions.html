@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Actions preview</title>
+<link rel="stylesheet" href="herdr.css">
+<style>
+  body { width: 1100px; height: 620px; position: relative; overflow: hidden; background: radial-gradient(900px 500px at 40% 30%, #20232a, #121418); }
+  .tabs { position: absolute; left: 0; right: 0; top: 0; height: 42px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: var(--chrome); border-bottom: 1px solid var(--border); }
+  .tab { height: 29px; padding: 0 10px; display: flex; align-items: center; gap: 7px; border-radius: 7px; color: var(--muted); font-size: 12.8px; }
+  .tab.on { background: var(--raised); border: 1px solid var(--border); color: var(--fg); }
+  .ctl { height: 24px; display: flex; align-items: center; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; color: var(--dim); }
+  .term { position: absolute; left: 16px; top: 58px; right: 16px; bottom: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); }
+  .menu { position: absolute; left: 676px; top: 46px; width: 280px; padding: 5px; }
+  .editor { position: absolute; left: 150px; top: 170px; width: 420px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .choice { height: 28px; padding: 0 9px; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+  .choice.on { background: var(--selected); color: var(--fg); border-color: var(--input); }
+</style></head>
+<body><script src="icons.js"></script>
+<div class="tabs">
+  <span class="tab on"><svg class="i" style="fill: var(--clay); stroke: none"><use href="#spark"/></svg>Claude</span>
+  <span class="tab"><svg class="i"><use href="#terminal"/></svg>2</span>
+  <span class="tab"><svg class="i"><use href="#terminal"/></svg>3</span>
+  <span class="ibtn"><svg class="i"><use href="#plus"/></svg></span>
+  <span class="grow"></span>
+  <span class="ctl"><span class="row" style="height: 22px; padding: 0 8px; gap: 8px; color: var(--fg)"><svg class="i"><use href="#play"/></svg>Dev</span><span style="width: 1px; height: 14px; background: var(--border)"></span><span class="row" style="height: 22px; padding: 0 6px; background: var(--hover); border-radius: 0 5px 5px 0; color: var(--fg)"><svg class="i" style="width: 12px; height: 12px"><use href="#chev-down"/></svg></span></span>
+  <span class="ibtn"><svg class="i"><use href="#panel"/></svg></span>
+</div>
+<div class="term" style="padding: 18px 20px; font: 13px/1.6 var(--mono); color: var(--muted)"><div><span class="green">➜</span> storefront <span class="blue">git:(feat/saved-carts)</span> bun run dev</div><div>$ next dev --turbo</div><div>&nbsp; ✓ Ready in 1.4s</div></div>
+<div class="menu panel">
+  <div class="menurow sel" style="height: 32px"><svg class="i muted"><use href="#play"/></svg><span class="grow">Dev</span><span class="ibtn" style="width: 20px; height: 20px"><svg class="i" style="width: 12px; height: 12px"><use href="#pencil"/></svg></span></div>
+  <div class="menurow" style="height: 32px"><svg class="i muted"><use href="#test"/></svg><span class="grow">Test</span><span class="ibtn" style="width: 20px; height: 20px"><svg class="i" style="width: 12px; height: 12px"><use href="#pencil"/></svg></span></div>
+  <div class="menurow" style="height: 32px"><svg class="i muted"><use href="#lint"/></svg><span class="grow">Lint</span><span class="ibtn" style="width: 20px; height: 20px"><svg class="i" style="width: 12px; height: 12px"><use href="#pencil"/></svg></span></div>
+  <div class="menurow" style="height: 32px"><svg class="i muted"><use href="#build"/></svg><span class="grow">Build</span><span class="ibtn" style="width: 20px; height: 20px"><svg class="i" style="width: 12px; height: 12px"><use href="#pencil"/></svg></span></div>
+  <div style="height: 1px; background: var(--border); margin: 4px 3px"></div>
+  <div class="menurow" style="height: 32px"><svg class="i muted"><use href="#plus"/></svg><span class="grow">Add action</span></div>
+</div>
+<div class="editor panel">
+  <div class="row"><b class="grow" style="font-size: 15px">Edit action</b><span class="dim" style="font-size: 11px">Esc</span></div>
+  <div class="col" style="gap: 6px"><span class="label">Name</span><div class="field">Dev</div></div>
+  <div class="col" style="gap: 6px"><span class="label">Command</span><div class="field focus mono" style="font-size: 12.5px">bun run dev</div></div>
+  <div class="col" style="gap: 6px"><span class="label">Folder (optional)</span><div class="field dim">Focused terminal's folder</div></div>
+  <div class="row" style="gap: 20px">
+    <div class="col" style="gap: 6px"><span class="label">Icon</span><div class="row" style="gap: 4px">
+      <span class="choice on" style="width: 28px; padding: 0"><svg class="i"><use href="#play"/></svg></span>
+      <span class="choice" style="width: 28px; padding: 0"><svg class="i"><use href="#test"/></svg></span>
+      <span class="choice" style="width: 28px; padding: 0"><svg class="i"><use href="#lint"/></svg></span>
+      <span class="choice" style="width: 28px; padding: 0"><svg class="i"><use href="#gear"/></svg></span>
+      <span class="choice" style="width: 28px; padding: 0"><svg class="i"><use href="#build"/></svg></span>
+      <span class="choice" style="width: 28px; padding: 0"><svg class="i"><use href="#zap"/></svg></span></div></div>
+    <div class="col" style="gap: 6px"><span class="label">Run in</span><div class="row" style="gap: 4px"><span class="choice on">Tab</span><span class="choice">Right</span><span class="choice">Down</span></div></div>
+  </div>
+  <div class="row" style="gap: 8px; padding-top: 4px"><span class="btn red" style="color: var(--red)">Delete</span><span class="grow"></span><span class="btn">Cancel</span><span class="btn solid">Save</span></div>
+</div>
+</body></html>

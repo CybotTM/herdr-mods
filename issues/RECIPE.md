@@ -5,6 +5,8 @@ PRs, an in-app viewer for either (PRs get Checks and Files changed tabs and a me
 **Create worktree** dialog that starts work from a branch (including ones only on the remote), an
 issue, a PR or a new name, with Claude's prompt prefilled. Two mods: `issues` and `new-worktree`.
 
+![Issues & worktrees](preview.png)
+
 ## What you see
 
 - **Issues table** (`mod.open issues`, a frameless dialog, 92% × 90%): a close button, the repo

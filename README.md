@@ -25,6 +25,8 @@ By hand: copy the folder's `mods/<name>/` into `~/.config/herdr-app/mods/`, run
 ## Updating this repo
 
 `./sync.sh` copies these mods from your Herdr home into their folders.
+`previews/render.sh` redraws each folder's `preview.png` from `previews/<folder>.html` with headless
+Chrome: previews are HTML mockups with demo data, so no screenshot of your own work is published.
 
 ## License
 

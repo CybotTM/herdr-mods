@@ -4,6 +4,12 @@ Copyright 2026 VladTemp27
 Parts of these mods adapt code and icons from Herdr Desktop's shipped mods
 (https://github.com/herdrdev/herdr-app), licensed under the Apache License, Version 2.0.
 
-usage-limits' Claude usage request follows the approach of jmalicki/herdr-mod-ai-usage (MIT).
+t3-actions is t3-actions from JinJieBeWater/herdr-t3
+(https://github.com/JinJieBeWater/herdr-t3), licensed under the Apache License,
+Version 2.0, and modified here (see t3-actions/mods/t3-actions/CHANGES.md).
+
+usage-limits asks the claude and codex CLIs for usage the way Joseph Malicki's
+jmalicki/herdr-mod-ai-usage (https://github.com/jmalicki/herdr-mod-ai-usage, MIT) does;
+no code is copied from it.
 
 Icons are Lucide (ISC), as in Herdr's own mods.

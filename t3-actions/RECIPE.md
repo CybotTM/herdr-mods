@@ -1,6 +1,7 @@
 # Actions
 
-A run button for Herdr's tab bar, after T3 Code's: **▶ Dev | ▾** runs your most recent command in
+A run button for Herdr's tab bar, after T3 Code's, adapted from `t3-actions` in
+[JinJieBeWater/herdr-t3](https://github.com/JinJieBeWater/herdr-t3) (Apache-2.0; see its `CHANGES.md`): **▶ Dev | ▾** runs your most recent command in
 a new terminal with one click, and the ▾ menu lists every saved action plus **Add action**. Actions
 are kept in shared state, so every layout and window sees the same list.
 

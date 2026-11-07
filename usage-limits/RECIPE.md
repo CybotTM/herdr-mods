@@ -51,7 +51,9 @@ from the CLIs themselves; the mod never reads a token or credential file.
 - `claude` must not start a turn or load hooks/MCP servers (`--safe-mode`).
 - Codex's app-server can be absent or slow: fall back to its logged snapshots, and say "not
   installed" rather than show old logs when the CLI is gone.
-- Approach for the Claude request: credit to jmalicki/herdr-mod-ai-usage (MIT).
+- The way both helpers ask the CLIs (`claude` with the `get_usage` control request, `codex app-server`
+  with `account/rateLimits/read`) follows Joseph Malicki's
+  [jmalicki/herdr-mod-ai-usage](https://github.com/jmalicki/herdr-mod-ai-usage) (MIT); no code is copied.
 
 ## Done when
 

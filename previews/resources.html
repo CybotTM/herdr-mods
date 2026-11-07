@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Resources preview</title>
+<link rel="stylesheet" href="herdr.css">
+<style>
+  body { width: 960px; height: 600px; position: relative; overflow: hidden; background: radial-gradient(900px 500px at 40% 30%, #20232a, #121418); }
+  .term { position: absolute; left: 24px; top: 24px; right: 24px; bottom: 52px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); padding: 18px 20px; font: 13px/1.6 var(--mono); color: var(--muted); }
+  .status { position: absolute; left: 0; right: 0; bottom: 0; height: 28px; display: flex; align-items: center; gap: 14px; padding: 0 12px; background: var(--chrome); border-top: 1px solid var(--border); font-size: 11.8px; color: var(--muted); }
+  .pop { position: absolute; right: 120px; bottom: 34px; width: 420px; overflow: hidden; }
+  .sp { height: 46px; padding: 0 14px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+  .tm { height: 30px; padding: 0 14px 0 38px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); background: var(--raised); font-size: 12px; }
+  .n { flex: none; text-align: right; font: 12px var(--mono); }
+  .c { width: 52px; } .m { width: 66px; }
+  .btn2 { width: 56px; height: 24px; flex: none; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 5px; font-size: 12px; color: var(--muted); }
+</style></head>
+<body><script src="icons.js"></script>
+<div class="term">
+  <div><span class="green">➜</span> storefront <span class="blue">git:(feat/saved-carts)</span> bun run dev</div>
+  <div>$ next dev --turbo</div>
+  <div>&nbsp; ▲ Next.js 15.2</div>
+  <div>&nbsp; ✓ Ready in 1.4s</div>
+</div>
+<div class="pop panel">
+  <div class="row" style="height: 40px; padding: 0 14px; gap: 8px; border-bottom: 1px solid var(--border)">
+    <svg class="i muted"><use href="#activity"/></svg><b style="font-weight: 500">Resources</b><span class="grow"></span><span class="muted" style="font-size: 12px">CPU 12% · 3.8 GB of 16.0 GB</span>
+  </div>
+  <div class="sp"><svg class="i dim" style="width: 11px; height: 11px"><use href="#chev-down"/></svg><div class="col grow" style="gap: 1px"><span class="trunc">Saved carts</span><span class="dim trunc" style="font-size: 11.5px">next-server 812 MB · 3 terminals</span></div><span class="n c amber">34%</span><span class="n m">1.6 GB</span><span class="btn2">Sleep</span></div>
+  <div class="tm"><span class="muted">Claude Code</span><span class="dim grow trunc">Claude</span><span class="n c muted">6.2%</span><span class="n m muted">512 MB</span><span style="width: 56px"></span></div>
+  <div class="tm"><span class="muted">bun · next-server</span><span class="dim grow trunc">Dev</span><span class="n c amber">27%</span><span class="n m muted">980 MB</span><span style="width: 56px"></span></div>
+  <div class="tm"><span class="muted">zsh</span><span class="dim grow trunc">Tab 3</span><span class="n c muted">0%</span><span class="n m muted">6 MB</span><span style="width: 56px"></span></div>
+  <div class="sp"><svg class="i dim" style="width: 11px; height: 11px"><use href="#chev-right"/></svg><div class="col grow" style="gap: 1px"><span class="trunc">api</span><span class="dim trunc" style="font-size: 11.5px">go-api 220 MB · 2 terminals</span></div><span class="n c">3.1%</span><span class="n m">640 MB</span><span class="btn2">Sleep</span></div>
+  <div class="sp"><span style="width: 10px"></span><div class="col grow" style="gap: 1px"><span class="trunc muted">Checkout redesign</span><span class="row dim" style="gap: 4px; font-size: 11.5px"><svg class="i" style="width: 11px; height: 11px"><use href="#moon"/></svg>Sleeping</span></div><span class="btn2">Wake</span></div>
+  <div class="sp" style="background: var(--raised); border-bottom: 0; border-top: 1px solid var(--border)"><span style="width: 10px"></span><div class="col grow" style="gap: 1px"><span class="muted">Herdr</span><span class="dim" style="font-size: 11.5px">The window and herdr-core</span></div><span class="n c muted">1.4%</span><span class="n m muted">410 MB</span><span style="width: 56px"></span></div>
+  <div class="row" style="height: 30px; padding: 0 14px; border-top: 1px solid var(--border); font-size: 11.5px; color: var(--dim)"><span class="grow">CPU is a share of all cores</span><span class="mono">10 cores · 16.0 GB</span></div>
+</div>
+<div class="status">
+  <span class="dim">Used</span><span>5h 38%</span><span class="dim">·</span><span>wk 54%</span>
+  <span class="grow"></span>
+  <span class="dim">⌘⇧P commands</span>
+  <span class="row" style="height: 20px; padding: 0 7px; gap: 5px; border-radius: 5px; background: var(--hover); color: var(--fg)"><svg class="i" style="width: 13px; height: 13px"><use href="#activity"/></svg>CPU 12% <span class="dim">·</span> 3.8 GB</span>
+  <span class="row" style="gap: 5px"><svg class="i" style="width: 13px; height: 13px"><use href="#plug"/></svg>3</span>
+  <span>This computer</span>
+</div>
+</body></html>

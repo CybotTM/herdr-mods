@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Hibernate preview</title>
+<link rel="stylesheet" href="herdr.css">
+<style>
+  body { width: 960px; height: 600px; position: relative; overflow: hidden; background: radial-gradient(900px 500px at 40% 30%, #20232a, #121418); }
+  .term { position: absolute; left: 24px; top: 24px; right: 24px; bottom: 24px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); padding: 18px 20px; font: 13px/1.6 var(--mono); color: var(--muted); opacity: .55; }
+  .dlg { position: absolute; left: 200px; top: 96px; width: 560px; padding: 18px; display: flex; flex-direction: column; gap: 12px; font-size: 13px; color: var(--muted); }
+  .it { padding: 8px; display: flex; gap: 10px; align-items: flex-start; border-radius: 8px; }
+  .ck { width: 14px; height: 14px; margin-top: 2px; flex: none; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; }
+  .ck.on { background: var(--accent); border: 1px solid var(--accent); color: #fff; }
+  .ck.off { background: var(--bg); border: 1px solid var(--input); }
+  .b { height: 32px; padding: 0 14px; display: inline-flex; align-items: center; border-radius: 8px; border: 1px solid var(--input); background: var(--raised); color: var(--fg); font-size: 12px; }
+  .b.solid { background: var(--fg); border-color: var(--fg); color: #17191d; }
+  .toast { position: absolute; right: 40px; bottom: 40px; width: 300px; padding: 12px 14px; display: flex; gap: 10px; }
+</style></head>
+<body><script src="icons.js"></script>
+<div class="term">
+  <div><span class="green">➜</span> storefront <span class="blue">git:(feat/saved-carts)</span></div>
+  <div><span class="green">➜</span> storefront <span class="blue">git:(feat/saved-carts)</span></div>
+</div>
+<div class="dlg panel">
+  <div class="row"><b class="grow" style="font-size: 15px; font-weight: 600; color: var(--fg)">Resume after restart</b><span class="dim" style="font-size: 11px">Esc</span></div>
+  <div>These were running before their terminals were lost (a reboot or a core restart). Each comes back in its own pane.</div>
+  <div class="it" style="background: var(--hover)"><span class="ck on">✓</span><div class="col grow" style="gap: 2px; min-width: 0"><div class="row" style="gap: 6px"><b style="color: var(--fg); font-weight: 600">Claude Code</b><span class="dim trunc">Saved carts · t12</span></div><span class="mono trunc" style="font-size: 11px">cd ~/code/storefront && claude --model opus --resume 8f3c2a91-…</span></div></div>
+  <div class="it"><span class="ck on">✓</span><div class="col grow" style="gap: 2px; min-width: 0"><div class="row" style="gap: 6px"><b style="color: var(--fg); font-weight: 600">bun</b><span class="dim trunc">Saved carts · t13</span></div><span class="mono trunc" style="font-size: 11px">cd ~/code/storefront && bun run dev</span></div></div>
+  <div class="it"><span class="ck off"></span><div class="col grow" style="gap: 2px; min-width: 0"><div class="row" style="gap: 6px"><b style="color: var(--fg); font-weight: 600">Codex</b><span class="dim trunc">api · t21</span></div><span class="mono trunc" style="font-size: 11px">cd ~/code/api && codex resume --no-daemon 0b9e44d2-…</span></div></div>
+  <div class="row" style="gap: 8px; font-size: 12px"><span class="ck off"></span>Resume automatically next time</div>
+  <div class="row" style="justify-content: flex-end; gap: 8px"><span class="b">Not now</span><span class="b">Resume 2</span><span class="b solid">Resume all</span></div>
+</div>
+<div class="toast panel"><svg class="i muted" style="margin-top: 2px"><use href="#moon"/></svg><div class="col" style="gap: 2px"><b style="font-weight: 500">Checkout redesign is asleep</b><span class="muted" style="font-size: 12px">3 programs stopped. Wake it from the space menu.</span></div></div>
+</body></html>

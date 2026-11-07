@@ -25,7 +25,9 @@ issue, a PR or a new name, with Claude's prompt prefilled. Two mods: `issues` an
   **Branch · Issue · PR · New**, a search box and its matches (existing checkouts tagged **Open**,
   **Local** branches, **Remote**-only branches), ↻ to fetch origin, a **Create from** base pill
   (only when making a new branch from the base), and a **Details** box: **Branch**, **Space name**
-  and **Agent**, with a line under Branch saying what Create will do. **Create worktree ⌘↵**.
+  and **Agent**, with a line under Branch saying what Create will do. When the project has a setup
+  script, a **Setup script** row shows it (its lines joined by `·`) with **Run** / **Skip** pills,
+  marked **[Choose]** until one is picked if the project asks every time. **Create worktree ⌘↵**.
 
 ## How it behaves
 
@@ -50,6 +52,21 @@ issue, a PR or a new name, with Claude's prompt prefilled. Two mods: `issues` an
   - With Claude as the agent, the issue/PR task is pasted into Claude's prompt once it's ready
     (past the folder-trust prompt), not sent; the clipboard is restored. Remote: clipboard + toast.
   - A dialog creates or opens at most once (⌘↵ held or pressed twice makes one space).
+  - **Worktree setup hooks**, compatible with Orca: the setup script is the repo's `orca.yaml`
+    `scripts.setup` (shared with the team, runs first) followed by the project's local script.
+    It runs with `ORCA_ROOT_PATH` (main checkout), `ORCA_WORKTREE_PATH` (the new worktree) and
+    `ORCA_WORKSPACE_NAME` (its folder name), plus `CONDUCTOR_ROOT_PATH`, `HERDR_ROOT_PATH` and
+    `HERDR_WORKTREE_PATH`, so scripts written for Orca or Conductor work unchanged. By default it
+    runs; a project can skip it or ask every time (Create then waits for Run or Skip).
+    With "wait for setup", setup runs first and then the agent (or your login shell) in one terminal;
+    otherwise the agent starts at once and setup runs in a split below it. The terminal ends with
+    "Setup finished." or "Setup failed (exit N)." and stays open. When the checkout already has an
+    open space, Create only switches to it and nothing runs; an existing checkout with no open space
+    gets a new space, and the setup script runs there too.
+  - **Project defaults**, when the `project-settings` mod is installed (it ships in the
+    [Orca layout](https://github.com/VladTemp27/herdr-orca)): base branch, worktree location
+    (instead of `~/.herdr/worktrees/<repo>`), issue branch template, agent, and the local setup
+    script, when to run it and whether to wait. Without it, `orca.yaml` hooks still run.
 - Agent status isn't shown here; these are GitHub and git views.
 
 ## Built from
@@ -60,7 +77,11 @@ issue, a PR or a new name, with Claude's prompt prefilled. Two mods: `issues` an
   `data/issues/icons`, avatars via `curl` to `data/issues/avatars`), `pictures.js` (comment images),
   `prefill.sh` (the Claude prompt prefill helper). `mod.json` overlay: frameless dialog 0.92 × 0.9.
 - `mods/new-worktree/`: `main.js` (the dialog), `git.js` (branches, worktrees, PRs, issues),
-  icons, `mod.json` with `settings.issue_branch`.
+  `hooks.js` (reads `orca.yaml`'s `scripts.setup`, builds the hook environment; an identical copy
+  lives in `project-settings`), icons, `mod.json` with `settings.issue_branch`.
+- Project defaults come from shared `projects.settings`, keyed by
+  `JSON.stringify([machine, main checkout])`: `{ base, location, issue_branch, agent, setup,
+  setupWhen: "run" | "skip" | "ask", setupWait }`.
 - Herdr API: `exec`, `openOverlay`/`closeOverlay`, `shared`/`setShared` (`issues.pick`,
   `issues.changed`), `spaces`, `panes`, `focused`, `knownAgents`, `run` (`space.new`,
   `space.select`, `space.rename`), `readTextFile`, `notify`.
@@ -77,7 +98,13 @@ issue, a PR or a new name, with Claude's prompt prefilled. Two mods: `issues` an
 - Claude prints a non-breaking space after `❯`. A fresh Claude reports no status until its first
   turn, so the prefill helper watches the screen, not the status.
 - `cx.spawn` runs synchronously until its first `await`.
-- Worktrees go to `~/.herdr/worktrees/<repo>/<branch with / as ->`, as Herdr's own worktree mod.
+- Worktrees go to `~/.herdr/worktrees/<repo>/<branch with / as ->`, as Herdr's own worktree mod,
+  unless the project sets a location.
+- `orca.yaml` is read with a small parser for `scripts.setup` only (a one-line value, or a `|` / `>`
+  block), not full YAML. The hook runs through `env` and `sh -c`, so it needs a POSIX shell on the
+  worktree's machine.
+- Without "wait", the setup split is added once the new space appears (polled for about 6 seconds);
+  if it never does, a warning says to run the script there yourself.
 - The table's repo comes from the focused terminal's folder (then the last one used).
 
 ## Done when
@@ -88,3 +115,5 @@ issue, a PR or a new name, with Claude's prompt prefilled. Two mods: `issues` an
 - A PR in the viewer shows its tabs, checks, files (a file expands to its diff) and merge card.
 - In Create worktree, a remote-only branch makes a tracking worktree and a space; an issue fills
   `dev/feat/N` and its title; a branch already checked out says "opens it"; ⌘↵ twice makes one space.
+- With `scripts: setup: echo $ORCA_WORKTREE_PATH` in a repo's `orca.yaml`, a new worktree's
+  terminal prints its path and "Setup finished."; Skip creates it without running anything.

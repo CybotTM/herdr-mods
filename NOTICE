@@ -1,0 +1,9 @@
+Herdr mods
+Copyright 2026 VladTemp27
+
+Parts of these mods adapt code and icons from Herdr Desktop's shipped mods
+(https://github.com/herdrdev/herdr-app), licensed under the Apache License, Version 2.0.
+
+usage-limits' Claude usage request follows the approach of jmalicki/herdr-mod-ai-usage (MIT).
+
+Icons are Lucide (ISC), as in Herdr's own mods.

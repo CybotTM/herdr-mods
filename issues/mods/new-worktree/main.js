@@ -369,15 +369,17 @@ export default class NewWorktree extends View {
   }
 
   // The issues mod's helper pastes the task into Claude's prompt once it's ready, without sending it.
-  // It watches this Mac's terminals only, so a remote space gets the task on the clipboard
-  // (the app's own, so it works where pbcopy doesn't, e.g. a Windows app with a WSL space).
+  // It watches this computer's terminals only and needs sh, so a remote space, or any space of a
+  // Windows app, gets the task on the clipboard (the app's own, so it works where pbcopy doesn't).
   async prefill(task, cx) {
-    if (!this.on) {
+    const platform = window()?.platform;
+    if (!this.on && platform !== "windows") {
       await exec("sh", ["-c", 'nohup sh "$0" "$@" >/dev/null 2>&1 &', `${appHome()}/mods/issues/prefill.sh`, task]).catch(() => null);
       return;
     }
     cx.write_to_clipboard(task);
-    notify({ title: "Task copied", body: `Paste it into the agent with ${window()?.platform === "macos" ? "⌘V" : "Ctrl+V"}.` });
+    // Outside macOS terminal.paste is Ctrl+Shift+V; Ctrl+V on Linux goes to the program instead.
+    notify({ title: "Task copied", body: `Paste it into the agent with ${platform === "macos" ? "⌘V" : "Ctrl+Shift+V"}.` });
   }
 
   key(e, cx) {

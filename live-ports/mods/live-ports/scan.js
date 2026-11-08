@@ -74,11 +74,11 @@ async function gitRoot(on, folder) {
 // A WSL machine's loopback ports are forwarded to Windows' localhost (WSL's default), so a
 // Windows app can open them; any other machine's localhost isn't this computer's.
 async function isWsl(on) {
-  if (!wsl.has(on)) {
-    const text = await readTextFile("/proc/sys/kernel/osrelease", { on }).catch(() => null);
-    wsl.set(on, /microsoft|wsl/i.test(text ?? ""));
-  }
-  return wsl.get(on);
+  if (wsl.has(on)) return wsl.get(on);
+  const text = await readTextFile("/proc/sys/kernel/osrelease", { on }).catch(() => null);
+  const is = /microsoft|wsl/i.test(text ?? "");
+  if (text !== null) wsl.set(on, is); // a failed read is asked again next scan
+  return is;
 }
 
 const inside = (path, root) => path === root || path.startsWith(`${root}/`);

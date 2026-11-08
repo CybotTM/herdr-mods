@@ -37,7 +37,7 @@ export default class LivePorts extends View {
     this.busy = true;
     cx.spawn(async (cx) => {
       try {
-        const next = await scanPorts(spaces(), panes(), machines(), window()?.platform);
+        const next = await scanPorts(spaces(), panes(), machines(), window()?.platform, data());
         const text = JSON.stringify(next);
         // setShared redraws every mod, so only publish real changes.
         if (text !== JSON.stringify(data())) setShared(SHARED_KEY, next);

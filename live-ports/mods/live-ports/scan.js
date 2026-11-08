@@ -75,9 +75,10 @@ async function gitRoot(on, folder) {
 // Windows app can open them; any other machine's localhost isn't this computer's.
 async function isWsl(on) {
   if (wsl.has(on)) return wsl.get(on);
-  const text = await readTextFile("/proc/sys/kernel/osrelease", { on }).catch(() => null);
+  // null means no such file (a machine without /proc is not WSL); only a rejected read is asked again.
+  const text = await readTextFile("/proc/sys/kernel/osrelease", { on }).catch(() => undefined);
   const is = /microsoft|wsl/i.test(text ?? "");
-  if (text !== null) wsl.set(on, is); // a failed read is asked again next scan
+  if (text !== undefined) wsl.set(on, is);
   return is;
 }
 
@@ -98,7 +99,9 @@ async function spaceRoots(on, spaceList, paneList) {
   return out.sort((a, b) => b.root.length - a.root.length); // deepest checkout wins
 }
 
-async function scanMachine(on, spaceList, paneList, appOnWindows, bySpace, external) {
+async function scanMachine(on, spaceList, paneList, appOnWindows) {
+  const bySpace = {};
+  const external = [];
   const found = await listeners(on);
   const live = new Set(found.map((l) => key(on, l.pid)));
   for (const k of cwds.keys()) if (JSON.parse(k)[0] === on && !live.has(k)) cwds.delete(k);
@@ -113,23 +116,33 @@ async function scanMachine(on, spaceList, paneList, appOnWindows, bySpace, exter
     if (owner) (bySpace[owner.space] ??= []).push(port);
     else external.push(port);
   }
+  return { bySpace, external };
 }
 
 // Scans every machine that holds spaces (skipping ones machines() reports unavailable), and this
-// computer unless the app runs on Windows, which has no lsof. One machine failing leaves the others.
-export async function scanPorts(spaceList, paneList, machineList, platform) {
+// computer unless the app runs on Windows, which has no lsof. Machines are scanned in parallel, so a
+// slow one doesn't hold up the rest; one that fails keeps its ports from `previous` (the last result).
+export async function scanPorts(spaceList, paneList, machineList, platform, previous) {
   const down = new Set(machineList.filter((m) => m.layout === "unavailable").map((m) => m.name));
   const targets = new Set(spaceList.map((s) => s.machine ?? null).filter((on) => on !== null && !down.has(on)));
   if (platform !== "windows") targets.add(null);
+  const order = [null, ...[...targets].filter(Boolean).sort()].filter((on) => targets.has(on));
+  const results = await Promise.allSettled(order.map((on) => scanMachine(on, spaceList, paneList, platform === "windows")));
   const bySpace = {};
   const external = [];
-  for (const on of [null, ...[...targets].filter(Boolean).sort()].filter((on) => targets.has(on))) {
-    try {
-      await scanMachine(on, spaceList, paneList, platform === "windows", bySpace, external);
-    } catch (e) {
-      console.warn(`live-ports: scanning ${on ?? "this computer"} failed: ${e}`);
+  order.forEach((on, i) => {
+    let r = results[i].value;
+    if (results[i].status === "rejected") {
+      console.warn(`live-ports: scanning ${on ?? "this computer"} failed: ${results[i].reason}`);
+      const mine = (l) => (l ?? []).filter((p) => (p.machine ?? null) === on);
+      r = {
+        bySpace: Object.fromEntries(Object.entries(previous?.bySpace ?? {}).map(([k, l]) => [k, mine(l)])),
+        external: mine(previous?.external),
+      };
     }
-  }
+    for (const [k, l] of Object.entries(r.bySpace)) if (l.length) (bySpace[k] ??= []).push(...l);
+    external.push(...r.external);
+  });
   return { bySpace, external };
 }
 

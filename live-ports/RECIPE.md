@@ -1,8 +1,9 @@
 # Live ports
 
 The TCP ports listening on this computer and on each machine that holds spaces, grouped by the
-Herdr space whose git checkout started them: a small plug-and-count button for a status bar, and a popup above it listing each port with
-Open and Stop. Other mods (such as a sidebar) can read the same list from shared state.
+Herdr space whose git checkout started them: a small plug-and-count button for a status bar, and
+a popup above it listing each port with Open and Stop. Other mods (such as a sidebar) can read the
+same list from shared state.
 
 ![Live ports](preview.png)
 
@@ -26,9 +27,9 @@ Open and Stop. Other mods (such as a sidebar) can read the same list from shared
   `live-ports` as `{ bySpace: { <space id>: [{ port, pid, name, address, machine, reachable }] },
   external: [...] }`. `machine` is the space's machine (null: this computer); `reachable` says
   whether `http://<address>` opens from this computer.
-- Scanned: every machine that holds spaces (`exec(..., { on })`; machines `machines()` reports
-  unavailable are skipped, and one that fails leaves the others' ports), plus this computer unless
-  the app runs on Windows.
+- Scanned, in parallel: every machine that holds spaces (`exec(..., { on })`; machines
+  `machines()` reports unavailable are skipped), plus this computer unless the app runs on
+  Windows. A machine whose scan fails keeps the ports it had in the last published list.
 - A port belongs to the space on the same machine whose checkout holds the listening process's
   working folder (the deepest checkout wins).
 - Clicking a group switches to that space. Open launches `http://localhost:<port>`: for this
@@ -62,6 +63,9 @@ Open and Stop. Other mods (such as a sidebar) can read the same list from shared
 - `setShared` redraws every mod: publish only when the JSON changes.
 - macOS and Linux machines (`lsof`, or `ss` on Linux). A Windows app scans only its remote
   machines, such as WSL.
+- Any WSL machine counts as reachable from a Windows app, also one running on another PC, whose
+  `localhost` is not this computer's. The folder and WSL caches keep entries for machines that
+  have gone; they are small and grow only with the number of machines seen.
 
 ## Done when
 
